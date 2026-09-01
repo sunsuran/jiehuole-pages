@@ -1,4 +1,121 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><title>OK</title></head>
-<body><h1>OK</h1><p>It works.</p></body>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>I Transmigrated to Another World to Become the Overlord</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Microsoft YaHei",sans-serif;
+  background:linear-gradient(160deg,#1a120a 0%,#0d0805 100%);
+  color:#e8d8b5;min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:30px 16px;line-height:1.7}
+.langbar{position:fixed;top:14px;right:14px;z-index:10}
+.langbtn{border:1px solid rgba(212,175,55,.5);background:rgba(0,0,0,.4);
+  color:#e8d8b5;padding:5px 12px;margin-left:4px;border-radius:6px;
+  cursor:pointer;font-size:12px;backdrop-filter:blur(4px)}
+.langbtn.active{background:linear-gradient(180deg,#e8b93a,#a97c14);
+  color:#1a120a;font-weight:bold;border-color:#ffd766}
+.card{max-width:640px;width:100%;background:linear-gradient(160deg,
+  rgba(48,34,23,.95) 0%,rgba(28,20,14,.95) 60%,rgba(22,16,11,.95) 100%);
+  border:1px solid rgba(212,175,55,.5);border-radius:16px;
+  box-shadow:0 18px 60px rgba(0,0,0,.7),0 0 30px rgba(212,175,55,.18);
+  padding:42px 38px;backdrop-filter:blur(6px)}
+.game-icon{width:96px;height:96px;margin:0 auto 18px;display:block;
+  border-radius:50%;
+  background:radial-gradient(circle at 34% 28%,#ffe9a8 0%,#e8b93a 45%,#a97c14 100%);
+  border:3px solid rgba(255,235,170,.75);
+  box-shadow:0 0 22px rgba(232,185,58,.5);
+  font-size:46px;line-height:96px;text-align:center;text-shadow:0 2px 3px rgba(90,60,0,.5)}
+h1.title{text-align:center;margin:0 0 6px;font-size:24px;line-height:1.4;
+  background:linear-gradient(180deg,#fff6d8 0%,#ffd766 55%,#e0a92c 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.subtitle{text-align:center;color:#a89e8e;font-size:13px;letter-spacing:1px;margin-bottom:24px}
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,55,.45),transparent);
+  margin:22px 0}
+.desc{color:#c6bba8;font-size:14.5px;line-height:1.85;text-align:center;margin-bottom:24px}
+.links{display:flex;flex-direction:column;gap:11px;margin-top:6px}
+.links a{display:flex;align-items:center;gap:12px;padding:14px 18px;
+  border-radius:10px;text-decoration:none;color:#ffd766;font-weight:bold;font-size:15px;
+  border:1px solid rgba(212,175,55,.45);
+  background:linear-gradient(120deg,rgba(212,175,55,.12),rgba(212,175,55,.04));
+  transition:all .16s}
+.links a:hover{transform:translateY(-2px);border-color:#e8b93a;
+  background:linear-gradient(120deg,rgba(212,175,55,.22),rgba(212,175,55,.08));
+  box-shadow:0 6px 18px rgba(212,175,55,.25)}
+.links a .ico{font-size:22px}
+.links a .arrow{margin-left:auto;color:#a89e8e;font-size:18px}
+.foot{text-align:center;color:#7d7466;font-size:12px;margin-top:26px}
+</style>
+</head>
+<body onload="setLang('en')">
+
+<div class="langbar">
+  <button class="langbtn" id="btn-en" onclick="setLang('en')">English</button>
+  <button class="langbtn" id="btn-zh" onclick="setLang('zh')">中文</button>
+</div>
+
+<!-- ================= ENGLISH ================= -->
+<div id="en" class="card">
+  <div class="game-icon">🏯</div>
+  <h1 class="title">I Transmigrated to Another World<br>to Become the Overlord</h1>
+  <p class="subtitle">— Please Stop Fighting Over Me —</p>
+  <div class="divider"></div>
+  <p class="desc">
+    A single-player story-driven RPG set in an ancient Chinese fantasy world.<br>
+    Build your city, forge bonds with legendary heroines, and shape your own destiny.
+  </p>
+  <div class="links">
+    <a href="privacy.html">
+      <span class="ico">🔒</span>
+      <span>Privacy Policy</span>
+      <span class="arrow">→</span>
+    </a>
+    <a href="support.html">
+      <span class="ico">🛟</span>
+      <span>Player Support</span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+  <p class="foot">© 2026 SU RAN · All rights reserved</p>
+</div>
+
+<!-- ================= 中文 ================= -->
+<div id="zh" class="card" style="display:none">
+  <div class="game-icon">🏯</div>
+  <h1 class="title">穿越到异世界做霸主</h1>
+  <p class="subtitle">—— 请不要为我争风吃醋 ——</p>
+  <div class="divider"></div>
+  <p class="desc">
+    沉浸式单机剧情角色扮演游戏。<br>
+    经营城池、结交红颜、征战乱世，书写属于你的异世界篇章。
+  </p>
+  <div class="links">
+    <a href="privacy.html">
+      <span class="ico">🔒</span>
+      <span>隐私政策</span>
+      <span class="arrow">→</span>
+    </a>
+    <a href="support.html">
+      <span class="ico">🛟</span>
+      <span>玩家支持</span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+  <p class="foot">© 2026 SU RAN · 保留所有权利</p>
+</div>
+
+<script>
+function setLang(l){
+  document.getElementById('en').style.display = (l==='en')?'block':'none';
+  document.getElementById('zh').style.display = (l==='zh')?'block':'none';
+  document.getElementById('btn-en').className = 'langbtn' + (l==='en'?' active':'');
+  document.getElementById('btn-zh').className = 'langbtn' + (l==='zh'?' active':'');
+  document.documentElement.lang = l;
+  document.title = (l==='en')
+    ? 'I Transmigrated to Another World to Become the Overlord'
+    : '穿越到异世界做霸主 —— 请不要为我争风吃醋';
+}
+</script>
+</body>
 </html>
