@@ -18,7 +18,7 @@ code{background:#f0e6d2;padding:2px 6px;border-radius:4px;font-size:13px}
 .langbtn.active{background:#d4af37;color:#fff;font-weight:bold}
 </style>
 </head>
-<body onload="setLang('en')">
+<body>
 
 <div class="langbar">
   <button class="langbtn" id="btn-en" onclick="setLang('en')">English</button>
@@ -78,7 +78,7 @@ Last updated: September 1, 2026
 <div class="contact">
 If you have any questions about this policy, please contact us:<br><br>
 <strong>Email:</strong> <a href="mailto:291759135@qq.com">291759135@qq.com</a><br>
-<strong>Support page:</strong> <a href="https://sunsuran.github.io/jiehuole-pages/support.html">Support Page</a>
+<strong>Support page:</strong> <a href="support.html">Support Page</a>
 </div>
 </div>
 
@@ -135,11 +135,31 @@ If you have any questions about this policy, please contact us:<br><br>
 <div class="contact">
 如对本政策有任何疑问，请通过以下方式联系我们：<br><br>
 <strong>邮箱：</strong> <a href="mailto:291759135@qq.com">291759135@qq.com</a><br>
-<strong>支持页面：</strong> <a href="https://sunsuran.github.io/jiehuole-pages/support.html">支持页面</a>
+<strong>支持页面：</strong> <a href="support.html">支持页面</a>
 </div>
 </div>
 
 <script>
+/* ---- 跨页语言保持：优先 ?lang= 参数，其次 localStorage，最后默认值 ---- */
+function getLang(def){
+  try{
+    var q = new URLSearchParams(location.search).get('lang');
+    if (q === 'zh' || q === 'en') return q;
+    var s = localStorage.getItem('dw_lang');
+    if (s === 'zh' || s === 'en') return s;
+  }catch(e){}
+  return def;
+}
+function syncLangLinks(l){
+  var as = document.querySelectorAll('a[href]');
+  for (var i=0;i<as.length;i++){
+    var h = as[i].getAttribute('href') || '';
+    if (/^[a-z]+:/i.test(h) || h.indexOf('#') === 0) continue;
+    if (/\.html(\?|#|$)/i.test(h)){
+      as[i].setAttribute('href', h.split('#')[0].split('?')[0] + '?lang=' + l);
+    }
+  }
+}
 function setLang(l){
   document.getElementById('en').style.display = (l==='en')?'block':'none';
   document.getElementById('zh').style.display = (l==='zh')?'block':'none';
@@ -149,7 +169,10 @@ function setLang(l){
   document.title = (l==='en')
     ? 'Privacy Policy — I Transmigrated to Another World to Become the Overlord'
     : '隐私政策 — 穿越到异世界做霸主';
+  try{ localStorage.setItem('dw_lang', l); }catch(e){}
+  syncLangLinks(l);
 }
+setLang(getLang('en'));
 </script>
 </body>
 </html>

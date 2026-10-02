@@ -18,7 +18,7 @@ a{color:#8a6a1a}
 .langbtn.active{background:#d4af37;color:#fff;font-weight:bold}
 </style>
 </head>
-<body onload="setLang('en')">
+<body>
 
 <div class="langbar">
   <button class="langbtn" id="btn-en" onclick="setLang('en')">English</button>
@@ -55,7 +55,7 @@ a{color:#8a6a1a}
 <p class="a">A: Please attach a screenshot of the problem and the log file located at <code>%APPDATA%\dreamworld\main.log</code>. This greatly speeds up our ability to diagnose the issue.</p>
 
 <h2>Privacy Policy</h2>
-<p>Please read our <a href="https://sunsuran.github.io/jiehuole-pages/privacy.html">Privacy Policy</a>.</p>
+<p>Please read our <a href="privacy.html">Privacy Policy</a>.</p>
 </div>
 
 <!-- ================= 中文 ================= -->
@@ -88,10 +88,30 @@ a{color:#8a6a1a}
 <p class="a">A：请附上问题截图，以及日志文件 <code>%APPDATA%\dreamworld\main.log</code>，这将大大加快我们定位问题的速度。</p>
 
 <h2>隐私政策</h2>
-<p>请查阅我们的 <a href="https://sunsuran.github.io/jiehuole-pages/privacy.html">隐私政策</a>。</p>
+<p>请查阅我们的 <a href="privacy.html">隐私政策</a>。</p>
 </div>
 
 <script>
+/* ---- 跨页语言保持：优先 ?lang= 参数，其次 localStorage，最后默认值 ---- */
+function getLang(def){
+  try{
+    var q = new URLSearchParams(location.search).get('lang');
+    if (q === 'zh' || q === 'en') return q;
+    var s = localStorage.getItem('dw_lang');
+    if (s === 'zh' || s === 'en') return s;
+  }catch(e){}
+  return def;
+}
+function syncLangLinks(l){
+  var as = document.querySelectorAll('a[href]');
+  for (var i=0;i<as.length;i++){
+    var h = as[i].getAttribute('href') || '';
+    if (/^[a-z]+:/i.test(h) || h.indexOf('#') === 0) continue;
+    if (/\.html(\?|#|$)/i.test(h)){
+      as[i].setAttribute('href', h.split('#')[0].split('?')[0] + '?lang=' + l);
+    }
+  }
+}
 function setLang(l){
   document.getElementById('en').style.display = (l==='en')?'block':'none';
   document.getElementById('zh').style.display = (l==='zh')?'block':'none';
@@ -101,7 +121,10 @@ function setLang(l){
   document.title = (l==='en')
     ? 'Support — I Transmigrated to Another World to Become the Overlord'
     : '玩家支持 — 穿越到异世界做霸主';
+  try{ localStorage.setItem('dw_lang', l); }catch(e){}
+  syncLangLinks(l);
 }
+setLang(getLang('en'));
 </script>
 </body>
 </html>

@@ -55,7 +55,7 @@ h1.title{text-align:center;margin:0 0 6px;font-size:24px;line-height:1.4;
 }
 </style>
 </head>
-<body onload="setLang('en')">
+<body>
 
 <div class="langbar">
   <button class="langbtn" id="btn-en" onclick="setLang('en')">English</button>
@@ -133,6 +133,27 @@ h1.title{text-align:center;margin:0 0 6px;font-size:24px;line-height:1.4;
 </div>
 
 <script>
+/* ---- 跨页语言保持：优先 ?lang= 参数，其次 localStorage，最后默认值 ---- */
+function getLang(def){
+  try{
+    var q = new URLSearchParams(location.search).get('lang');
+    if (q === 'zh' || q === 'en') return q;
+    var s = localStorage.getItem('dw_lang');
+    if (s === 'zh' || s === 'en') return s;
+  }catch(e){}
+  return def;
+}
+/* 把当前语言写进所有站内 .html 链接，保证跳到下一页仍保持同语言 */
+function syncLangLinks(l){
+  var as = document.querySelectorAll('a[href]');
+  for (var i=0;i<as.length;i++){
+    var h = as[i].getAttribute('href') || '';
+    if (/^[a-z]+:/i.test(h) || h.indexOf('#') === 0) continue;
+    if (/\.html(\?|#|$)/i.test(h)){
+      as[i].setAttribute('href', h.split('#')[0].split('?')[0] + '?lang=' + l);
+    }
+  }
+}
 function setLang(l){
   document.getElementById('en').style.display = (l==='en')?'block':'none';
   document.getElementById('zh').style.display = (l==='zh')?'block':'none';
@@ -142,7 +163,10 @@ function setLang(l){
   document.title = (l==='en')
     ? 'I Transmigrated to Another World to Become the Overlord'
     : '穿越到异世界做霸主 —— 请不要为我争风吃醋';
+  try{ localStorage.setItem('dw_lang', l); }catch(e){}
+  syncLangLinks(l);
 }
+setLang(getLang('en'));
 </script>
 </body>
 </html>
