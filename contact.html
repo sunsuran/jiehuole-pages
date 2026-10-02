@@ -228,10 +228,17 @@ function copyGroup(){
 }
 
 function joinQQ(){
-  // 1) 已配置官方加群链接 —— 用新窗口/新标签打开，不离开本站
+  // 1) 已配置官方加群链接 —— 用临时 <a target="_blank" rel="noopener"> 触发新标签页打开。
+  //    注意：window.open(url,'_blank','noopener') 返回值恒为 null，若据此做"被拦截兜底"
+  //    会误把当前页也跳走；改用 a.click() 既新开标签、又不离开当前页。
   if (QQ_JOIN_URL && QQ_JOIN_URL.length > 10){
-    var w = window.open(QQ_JOIN_URL, '_blank', 'noopener');
-    if (!w) { window.location.href = QQ_JOIN_URL; }   // 被拦时兜底为当前页跳转
+    var a = document.createElement('a');
+    a.href = QQ_JOIN_URL;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
     return;
   }
   // 2) 未配置：复制群号兜底
