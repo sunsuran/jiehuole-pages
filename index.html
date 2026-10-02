@@ -8,7 +8,8 @@
 *{box-sizing:border-box}
 body{margin:0;font-family:"Segoe UI","Microsoft YaHei",sans-serif;
   background:linear-gradient(160deg,#1a120a 0%,#0d0805 100%);
-  color:#e8d8b5;min-height:100vh;display:flex;align-items:center;justify-content:center;
+  color:#e8d8b5;min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
   padding:30px 16px;line-height:1.7}
 .langbar{position:fixed;top:14px;right:14px;z-index:10}
 .langbtn{border:1px solid rgba(212,175,55,.5);background:rgba(0,0,0,.4);
@@ -46,6 +47,12 @@ h1.title{text-align:center;margin:0 0 6px;font-size:24px;line-height:1.4;
 .links a .ico{font-size:22px}
 .links a .arrow{margin-left:auto;color:#a89e8e;font-size:18px}
 .foot{text-align:center;color:#7d7466;font-size:12px;margin-top:26px}
+@media (max-width:480px){
+  body{padding:22px 12px}
+  .card{padding:30px 20px}
+  .links a{font-size:14px;padding:13px 14px;gap:9px}
+  h1.title{font-size:20px}
+}
 </style>
 </head>
 <body onload="setLang('en')">
@@ -81,6 +88,11 @@ h1.title{text-align:center;margin:0 0 6px;font-size:24px;line-height:1.4;
       <span>Game Manual</span>
       <span class="arrow">→</span>
     </a>
+    <a href="contact.html">
+      <span class="ico">🤝</span>
+      <span>Contact Me · Player Group</span>
+      <span class="arrow">→</span>
+    </a>
   </div>
   <p class="foot">© 2026 SU RAN · All rights reserved</p>
 </div>
@@ -109,6 +121,11 @@ h1.title{text-align:center;margin:0 0 6px;font-size:24px;line-height:1.4;
     <a href="manual.html">
       <span class="ico">📖</span>
       <span>中文操作手册</span>
+      <span class="arrow">→</span>
+    </a>
+    <a href="contact.html">
+      <span class="ico">🤝</span>
+      <span>联系我 · 玩家交流群</span>
       <span class="arrow">→</span>
     </a>
   </div>
